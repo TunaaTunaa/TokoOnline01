@@ -31,9 +31,9 @@
                                     <td>{{ $row->kategori->nama_kategori }}</td>
                                     <td>
                                         @if ($row->status == 1)
-                                            <span class="badge bg-success">Publis</span>
+                                            <span class="badge bg-success">Tersedia</span>
                                         @elseif($row->status == 0)
-                                            <span class="badge bg-secondary">Blok</span>
+                                            <span class="badge bg-secondary">Tidak Tersedia</span>
                                         @endif
                                     </td>
                                     <td>{{ $row->nama_produk }}</td>

@@ -39,60 +39,51 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required|max:255',
-            'email' => 'required|max:255|email|unique:user',
-            'role' => 'required',
-            'hp' => 'required|min:10|max:13',
-            'password' => 'required|min:4|confirmed',
-            'foto' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024',
-        ], $messages = [
+        $messages = [
             'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg, jpg, png, atau gif.',
             'foto.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.',
-        ]);
+        ];
 
+        // Validasi input awal
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:user,email',
+            'role' => 'required',
+            'hp' => 'required|min:10|max:13',
+            'password' => 'required|string|min:8|confirmed',
+            'foto' => 'nullable|image|mimes:jpeg,jpg,png,gif|file|max:1024',
+        ], $messages);
+
+        // Validasi pola password: harus huruf besar, kecil, angka, dan simbol
+        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/';
+        if (!preg_match($pattern, $validatedData['password'])) {
+            return redirect()->back()->withErrors([
+                'password' => 'Password harus terdiri dari kombinasi huruf besar, huruf kecil, angka, dan simbol karakter.'
+            ])->withInput();
+        }
+
+        // Hash password
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        // Set default status
         $validatedData['status'] = 0;
 
-        // Menggunakan ImageHelper
-        if ($request->file('foto')) {
+        // Proses foto jika ada
+        if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             $originalFileName = date('YmdHis') . '_' . uniqid() . '.' . $extension;
             $directory = 'storage/img-user/';
-
-            // Simpan gambar dengan ukuran yang ditentukan (tinggi bisa null)
             ImageHelper::uploadAndResize($file, $directory, $originalFileName, 385, 400);
-
-            // Simpan nama file di database
             $validatedData['foto'] = $originalFileName;
         }
 
-        // Password harus kombinasi huruf besar, kecil, angka, dan simbol
-        $password = $request->input('password');
-        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/';
+        // Simpan ke database
+        User::create($validatedData);
 
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-        ], $messages); // ← $messages tetap dipakai di sini
-
-        $validatedData = $request->only(['nama', 'email', 'password']);
-
-        if (preg_match($pattern, $validatedData['password'])) {
-            $validatedData['password'] = Hash::make($validatedData['password']);
-            
-            User::create($validatedData); // ← DI SINI cukup 1 argumen aja
-
-            return redirect()->route('backend.user.index')
-                ->with('success', 'Data berhasil tersimpan');
-        } else {
-            return redirect()->back()->withErrors([
-                'password' => 'Password harus terdiri dari kombinasi huruf besar, huruf kecil, angka, dan simbol karakter.'
-            ]);
-        }
-
+        return redirect()->route('backend.user.index')->with('success', 'Data berhasil tersimpan');
     }
+
 
     /**
      * Display the specified resource.

@@ -48,9 +48,9 @@ table th {
             <td> {{ $row->kategori->nama_kategori }} </td>
             <td>
                 @if ($row->status == 1)
-                    Publis
+                    Tersedia
                 @elseif ($row->status == 0)
-                    Blok
+                    Tidak Tersedia
                 @endif
             </td>
             <td> {{ $row->nama_produk }} </td>

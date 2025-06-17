@@ -64,9 +64,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Berat</label>
-                                    <input type="text" name="berat" value="{{ old('berat') }}" onkeypress="return hanyaAngka(event)" class="form-control @error('berat') is-invalid @enderror" placeholder="Masukkan Berat Produk">
-                                    @error('berat')
+                                    <label>Waktu</label>
+                                    <input type="date" name="Waktu" value="{{ old('Waktu') }}" onkeypress="return hanyaAngka(event)" class="form-control @error('berat') is-invalid @enderror" placeholder="Masukan Kapan Waktunya">
+                                    @error('waktu')
                                         <span class="invalid-feedback alert-danger" role="alert">{{ $message }}</span>
                                     @enderror
                                 </div>

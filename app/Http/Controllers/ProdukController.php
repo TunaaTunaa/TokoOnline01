@@ -45,7 +45,7 @@ public function store(Request $request)
             'nama_produk' => 'required|max:255|unique:produk',
             'detail' => 'required',
             'harga' => 'required',
-            'berat' => 'required',
+            'Waktu' => 'required',
             'stok' => 'required',
             'foto' => 'required|image|mimes:jpeg,jpg,png,gif|file|max:1024',
         ], $messages = [
@@ -136,7 +136,7 @@ public function store(Request $request)
         'status' => 'required',
         'detail' => 'required',
         'harga' => 'required',
-        'berat' => 'required',
+        'Waktu' => 'required',
         'stok' => 'required',
         'foto' => 'image|mimes:jpeg,jpg,png,gif|file|max:1024',
     ];

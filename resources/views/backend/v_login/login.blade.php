@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-   <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image/icon_univ_bsi.png') }}">
-   <title>TokoOnline</title>
+   <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image/akr_logo.png') }}">
+   <title>Ankara Arena</title>
     <!-- Custom CSS -->
     <link href="{{ asset('backend/matrix-admin-package-full/dist/css/style.min.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,18 +42,20 @@
         <div class="auth-box bg-dark border-top border-secondary">
                 <div id="loginform">
                     <div class="text-center pt-3 pb-3">
-                        <span class="db"><img src="{{ asset('backend/matrix-admin-package-full/assets/images/logo.png') }}" alt="logo" /></span>
+                        <span class="db"><img src="{{ asset('image/akr_logo1.png') }}" alt="logo" /></span>
                     </div>
                     <!-- Form -->
                     <form class="form-horizontal mt-3" id="loginform" action="{{ route('backend.login') }}" method="post">
                         @csrf
-                        <div class="row p-b-35">
+                        <div class="row p-b-30">
                             <div class="col-12">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                        <span class="input-group-text bg-success text-white d-flex align-items-center justify-content-center" id="basic-addon1"><i class="ti-user" style="font-size: 20px; line-height: 1.5;"></i>
+                                    </span>
                                     </div>
-                                    <input type="text" name="email" value="{{ old('email') }}" class="form-control-lg @error('email') is-invalid @enderror" placeholder="Masukan Email" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" name="email" value="{{ old('email') }}" class="form-control form-control-lg @error('email') is-invalid 
+                                    @enderror" placeholder="Masukan Email" aria-label="Username" aria-describedby="basic-addon1">
                                     @error('email')
                                     <span class="invalid-feedback alert-danger">
 
@@ -63,7 +65,7 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-warning text-white h-100" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                        <span class="input-group-text bg-warning text-white h-100" id="basic-addon2"><i class="ti-pencil" style="font-size: 20px; line-height: 1.5;"></i></span>
                                     </div>
                                     <input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid 
                                     @enderror" placeholder="Masukan Password" aria-label="Password" aria-describedby="basic-addon1">
@@ -82,6 +84,9 @@
                                     <div class="pt-3">
                                         <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock me-1"></i> Lost password?</button>
                                         <button class="btn btn-success float-end text-white" type="submit">Login</button>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <a href="{{ route('backend.register') }}">Daftar Akun</a>
                                     </div>
                                 </div>
                             </div>

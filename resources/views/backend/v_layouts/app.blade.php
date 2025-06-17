@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>TokoOnline</title>
+    <title>Ankara Arena</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image\logo_univ_bsi.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image\akr_logo - Copy.png') }}">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\matrix-admin-package-full\assets\extra-libs\multicheck\multicheck.css') }}">
     <link href="{{ asset('backend\matrix-admin-package-full\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.css') }}" rel="stylesheet">
@@ -55,14 +55,14 @@
                         <b class="logo-icon p-l-10">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="{{ asset('image\icon_univ_bsi.png') }}" alt="homepage" class="light-logo" />
+                            <img src="{{ asset('image\akr_logo2.png') }}" alt="homepage" class="light-logo" />
 
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="{{ asset('image\logo_text.png') }}" alt="homepage" class="light-logo" />
+                            <img src="{{ asset('image\akr_text_logo.png') }}" alt="homepage" class="light-logo" />
 
                         </span>
                         <!-- Logo icon -->
@@ -254,7 +254,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                Web Programming. Studi Kasus Toko Online <a
+                Web Programming. Tugas Akhir Ankara Arena <a
                     href="https://bsi.ac.id">Kuliah..? BSI aja</a>.
             </footer>
             <!-- ============================================================== -->
